@@ -7,7 +7,7 @@ const Card = ({card,handelSelects}) => {
     return (
         <div className='card bg-white p-4 space-y-5'>
             <img src={image} alt="{title}" />
-            <h2 className='text-lg font-bold'>{title}</h2>
+            <h2 className='text-md font-bold'>{title}</h2>
             <p className=' text-sm font-normal'>{description}</p>
             <div className='flex justify-between text-[#1C1B1B99]'>
                 <div className='flex items-center'>
