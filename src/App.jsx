@@ -12,24 +12,44 @@ const [totalPrice, setTotalPrice] = useState(0);
 const [totalCredit, setTotalCredit] = useState(0);
 const [remainingCredit, setRemainingCredit] = useState(0);
 
-
-
 const handelSelects = card =>{
 
   let credit = card.credit;
   let price = card.price;
   let creditRemaining = 20;
 
- 
-  cartItem.forEach((item) => {
-    price += item.price;
-    credit += item.credit;
-  });
-
+  const isExist = cartItem.find((item) => item.card_id == card.card_id);
+  if (isExist) {
+   return toast.success('Allreay selected!', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    });
+  } else {
+    cartItem.forEach((item) => {
+      price += item.price;
+      credit += item.credit;
+    });
+  }
 
   const newCredit = creditRemaining - credit;
+
   if (credit > 20) {
-     toast("Your remaining credit has been 0 hr !");
+     toast.warn('Your remaining credit has been low', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
   } else {
     setRemainingCredit(newCredit);
     setTotalCredit(credit);
